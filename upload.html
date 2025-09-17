@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Prompt - PromptVerse | VoltNexis</title>
+  <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0; padding: 0; min-height: 100vh; }
+    .header { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57); background-size: 300% 300%; animation: gradientShift 4s ease infinite; padding: 20px; text-align: center; color: white; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .logo { height: 50px; width: 50px; border-radius: 12px; }
+    .header-brand { display: flex; align-items: center; gap: 15px; justify-content: center; }
+    .main-title { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .container { max-width: 800px; margin: 20px auto; background: #fff; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
+    .back-btn { background: rgba(255,255,255,0.2); border: none; color: white; padding: 10px 15px; border-radius: 50px; cursor: pointer; margin: 20px; }
+    .form-container { padding: 40px; }
+    .form-group { margin-bottom: 25px; }
+    .form-label { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-weight: 600; color: #333; }
+    .info-icon { width: 12px; height: 12px; background: #007bff; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; cursor: pointer; position: relative; }
+    .tooltip { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 8px 12px; border-radius: 6px; font-size: 12px; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; max-width: 300px; white-space: normal; }
+    .info-icon:hover .tooltip { opacity: 1; visibility: visible; }
+    .form-input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; }
+    .form-textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; min-height: 100px; resize: vertical; }
+    .file-upload { border: 2px dashed #ddd; border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s; }
+    .file-upload:hover { border-color: #007bff; background: #f8f9fa; }
+    .file-upload input { display: none; }
+    .submit-btn { background: linear-gradient(45deg, #007bff, #0056b3); color: white; padding: 15px 30px; border: none; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.3s; }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,123,255,0.3); }
+    .preview { display: none; margin-top: 15px; }
+    .preview img, .preview video { max-width: 200px; max-height: 150px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-brand">
+      <img src="assets/logo/logo.png" alt="PromptVerse Logo" class="logo">
+      <h1 class="main-title">Upload Your Prompt</h1>
+    </div>
+  </div>
+  
+  <div style="text-align: center; padding: 20px;">
+    <button class="back-btn" onclick="window.location.href='index.html'">← Back to Library</button>
+  </div>
+  
+  <div class="container">
+    <div class="form-container">
+      <form id="uploadForm">
+        <div class="form-group">
+          <label class="form-label">
+            Title *
+            <span class="info-icon">i
+              <div class="tooltip">A catchy, descriptive name for your AI art prompt that will appear as the main heading</div>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="title" placeholder="Epic Cyberpunk Portrait" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            Short Description *
+            <span class="info-icon">i
+              <div class="tooltip">A brief one-line summary that appears on the card preview (max 50-60 characters)</div>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="shortDesc" placeholder="Futuristic neon-lit character design" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            Full Description *
+            <span class="info-icon">i
+              <div class="tooltip">Detailed explanation of your creation process, inspiration, techniques used, and what makes this prompt special</div>
+            </span>
+          </label>
+          <textarea class="form-textarea" id="fullDesc" placeholder="A detailed description of your AI art creation process, inspiration, and the visual elements that make this prompt special..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            Prompt Text *
+            <span class="info-icon">i
+              <div class="tooltip">The exact text prompt you used with the AI model, including parameters like --ar, --v, etc.</div>
+            </span>
+          </label>
+          <textarea class="form-textarea" id="promptText" placeholder="cyberpunk portrait, neon lights, detailed face, 8k resolution, trending on artstation, --ar 16:9 --v 5" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            Tags
+            <span class="info-icon">i
+              <div class="tooltip">Keywords that describe your art style, theme, or technique. Separate with commas (e.g., cyberpunk, portrait, neon)</div>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="tags" placeholder="cyberpunk, portrait, neon, futuristic (separate with commas)">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            Original Image/Video *
+            <span class="info-icon">i
+              <div class="tooltip">Upload your original reference image or video before AI processing (.webp for images, .webm for videos)</div>
+            </span>
+          </label>
+          <div class="file-upload" onclick="document.getElementById('originalFile').click()">
+            <p>📁 Click to upload original (.webp or .webm only)</p>
+            <input type="file" id="originalFile" accept=".webp,.webm" required>
+            <div class="preview" id="originalPreview"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            AI Result Image/Video *
+            <span class="info-icon">i
+              <div class="tooltip">Upload the final AI-generated result after processing (.webp for images, .webm for videos)</div>
+            </span>
+          </label>
+          <div class="file-upload" onclick="document.getElementById('aiFile').click()">
+            <p>🤖 Click to upload AI result (.webp or .webm only)</p>
+            <input type="file" id="aiFile" accept=".webp,.webm" required>
+            <div class="preview" id="aiPreview"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            AI Model
+            <span class="info-icon">i
+              <div class="tooltip">The AI model you used (e.g., Stable Diffusion XL, Midjourney v6, DALL-E 3, etc.)</div>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="model" placeholder="e.g., Stable Diffusion XL">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            Resolution
+            <span class="info-icon">i
+              <div class="tooltip">The output resolution of your AI-generated image/video (e.g., 1024x1024, 1920x1080)</div>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="resolution" placeholder="e.g., 1024x1024">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">
+            Owner/Creator
+            <span class="info-icon">i
+              <div class="tooltip">Your name or username to be credited as the creator of this prompt</div>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="owner" placeholder="Your name or username">
+        </div>
+        
+        <button type="submit" class="submit-btn">🚀 Submit Prompt</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function handleFileUpload(input, previewId) {
+      const file = input.files[0];
+      const preview = document.getElementById(previewId);
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const isVideo = file.type.startsWith('video/');
+          preview.innerHTML = isVideo ? 
+            `<video src="${e.target.result}" controls></video>` : 
+            `<img src="${e.target.result}" alt="Preview">`;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    
+    document.getElementById('originalFile').addEventListener('change', function() {
+      handleFileUpload(this, 'originalPreview');
+    });
+    
+    document.getElementById('aiFile').addEventListener('change', function() {
+      handleFileUpload(this, 'aiPreview');
+    });
+    
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const title = document.getElementById('title').value;
+      const shortDesc = document.getElementById('shortDesc').value;
+      const fullDesc = document.getElementById('fullDesc').value;
+      const promptText = document.getElementById('promptText').value;
+      const tags = document.getElementById('tags').value;
+      const model = document.getElementById('model').value || 'Unknown';
+      const resolution = document.getElementById('resolution').value || '1024x1024';
+      const owner = document.getElementById('owner').value || 'Anonymous';
+      
+      const originalFile = document.getElementById('originalFile').files[0];
+      const aiFile = document.getElementById('aiFile').files[0];
+      
+      const subject = `PromptVerse Submission: ${title}`;
+      const body = `New Prompt Submission:\n\nTitle: ${title}\nShort Description: ${shortDesc}\nFull Description: ${fullDesc}\nPrompt Text: ${promptText}\nTags: ${tags}\nAI Model: ${model}\nResolution: ${resolution}\nOwner/Creator: ${owner}\n\nOriginal File: ${originalFile ? originalFile.name : 'None'}\nAI Result File: ${aiFile ? aiFile.name : 'None'}\n\nPlease review and add to PromptVerse library.`;
+      
+      const mailtoLink = `mailto:voltnexis@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      window.location.href = mailtoLink;
+      
+      setTimeout(() => {
+        alert('Email client opened! Please attach your files and send the email.');
+        window.location.href = 'index.html';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

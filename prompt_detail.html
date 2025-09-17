@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Details - PromptVerse | VoltNexis</title>
+  <meta name="description" content="View detailed AI art prompt with before/after comparison, full description, and prompt text. Copy and use for your AI art generation.">
+  <meta name="keywords" content="AI prompt details, prompt text, AI art generation, Stable Diffusion prompts, Midjourney prompts">
+  <meta name="author" content="VoltNexis">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://voltnexis.github.io/prompts/prompt_detail.html">
+  <meta property="og:title" content="AI Art Prompt Details - PromptVerse">
+  <meta property="og:description" content="View detailed AI art prompt with before/after comparison and full prompt text.">
+  <meta property="og:url" content="https://voltnexis.github.io/prompts/prompt_detail.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://voltnexis.github.io/prompts/assets/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Art Prompt Details - PromptVerse">
+  <meta name="twitter:description" content="View detailed AI art prompt with before/after comparison and full prompt text.">
+  <meta name="twitter:image" content="https://voltnexis.github.io/prompts/assets/logo.png">
+  <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logo/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/logo/android-chrome-512x512.png">
+  <link rel="manifest" href="assets/logo/site.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0; padding: 0; min-height: 100vh; }
+    .header { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57); background-size: 300% 300%; animation: gradientShift 4s ease infinite; padding: 20px; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .logo { height: 60px; width: 60px; border-radius: 12px; }
+    .header-brand { display: flex; align-items: center; gap: 15px; }
+    .header-text { text-align: center; }
+    .main-title { font-family: 'Poppins', sans-serif; font-size: 2.8rem; font-weight: 700; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .brand { font-size: 0.9rem; margin-top: 10px; opacity: 0.8; }
+    .container { max-width: 1000px; margin: 10px auto; background: #fff; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
+    .back-btn { background: rgba(255,255,255,0.2); border: none; color: white; padding: 10px 15px; border-radius: 50px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; margin: 20px; }
+    .back-btn:hover { background: rgba(255,255,255,0.3); }
+    .content { padding: 40px; }
+    .image-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+    .image-card { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .image-card img, .image-card video { width: 100%; height: 300px; object-fit: cover; }
+    .image-label { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.7); color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+    .prompt-container { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 30px 0; position: relative; border-left: 5px solid #007bff; }
+    .prompt-header { display: flex; justify-content: between; align-items: center; margin-bottom: 15px; }
+    .prompt-text { font-family: 'Courier New', monospace; line-height: 1.6; color: #333; overflow: hidden; max-height: 4.8em; transition: max-height 0.3s ease; }
+    .prompt-expanded { max-height: none; }
+    .action-buttons { display: flex; gap: 15px; margin-top: 15px; }
+    .expand-btn { background: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 25px; cursor: pointer; font-size: 12px; transition: all 0.3s; }
+    .expand-btn:hover { background: #5a6268; transform: translateY(-2px); }
+    .copy-btn { position: absolute; top: 20px; right: 20px; background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 25px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.3s; }
+    .copy-btn:hover { background: #218838; transform: translateY(-2px); }
+    .reactions-section { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 30px 0; text-align: center; }
+    .reaction-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 25px; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 24px; font-weight: bold; color: #333; }
+    .stat-label { font-size: 14px; color: #666; margin-top: 5px; }
+    .total-reactions { font-size: 18px; color: #007bff; font-weight: bold; margin-bottom: 20px; }
+    .feedback-section { display: flex; gap: 20px; justify-content: center; }
+    .feedback-btn { padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer; font-size: 16px; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .like-btn { background: linear-gradient(45deg, #56ab2f, #a8e6cf); color: white; }
+    .dislike-btn { background: linear-gradient(45deg, #ff416c, #ff4b2b); color: white; }
+    .feedback-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+    .description-section { background: #fff; border-radius: 15px; padding: 25px; margin: 30px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .tags-container { margin: 25px 0; }
+    .tag { display: inline-block; background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 8px 16px; margin: 5px; border-radius: 25px; font-size: 12px; font-weight: bold; }
+    .meta-info { background: #f1f3f4; padding: 20px; border-radius: 15px; margin-top: 25px; }
+    .meta-item { display: flex; justify-content: space-between; margin: 10px 0; }
+    .meta-label { font-weight: bold; color: #666; }
+    .meta-value { color: #333; }
+    .related-models-section { background: #fff; border-radius: 15px; padding: 25px; margin: 30px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .model-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .model-tab { padding: 8px 16px; border: 2px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-size: 14px; transition: all 0.3s; }
+    .model-tab.active { background: #007bff; color: white; border-color: #007bff; }
+    .model-tab:hover { border-color: #007bff; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+    .model-result { text-align: center; }
+    .model-result img, .model-result video { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s; }
+    .model-result img:hover, .model-result video:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .model-label { margin-top: 10px; font-weight: 600; color: #007bff; font-size: 14px; }
+    .fade-in { animation: fadeIn 0.8s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .footer { background: linear-gradient(45deg, #2c3e50, #34495e); color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; flex-wrap: wrap; }
+    .footer-link { color: #ecf0f1; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+    .footer-link:hover { color: #3498db; transform: translateY(-2px); }
+    @media (max-width: 768px) {
+      body { padding: 0; }
+      .container { margin: 10px; border-radius: 15px; }
+      .content { padding: 20px; }
+      .image-section { grid-template-columns: 1fr; gap: 20px; }
+      .feedback-section { flex-direction: column; align-items: center; }
+      .copy-btn { position: static; margin-top: 15px; }
+      .header { padding: 15px; }
+      .header-brand { gap: 10px; }
+      .logo { height: 50px; width: 50px; }
+      .main-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-brand">
+      <img src="assets/logo/logo.png" alt="PromptVerse Logo" class="logo">
+      <h1 class="main-title">PromptVerse</h1>
+    </div>
+    <div class="header-text">
+      <p class="brand">✨ by <strong>VoltNexis</strong></p>
+    </div>
+  </div>
+  
+  <div style="text-align: center; padding: 20px;">
+    <button class="back-btn" onclick="window.location.href='index.html'">← Back to Library</button>
+  </div>
+  
+  <div class="container fade-in">
+    <div class="content">
+      <h1 id="promptTitle" style="text-align: center; color: #333; margin-bottom: 30px;">Prompt Details</h1>
+      
+      <div class="image-section">
+        <div class="image-card">
+          <div id="originalMedia"></div>
+          <div class="image-label">🎨 Original</div>
+        </div>
+        <div class="image-card">
+          <div id="aiMedia"></div>
+          <div class="image-label">🤖 AI Generated</div>
+        </div>
+      </div>
+
+      <p id="shortDescription" style="font-size: 18px; color: #666; margin-bottom: 20px;"></p>
+
+      <div class="prompt-container">
+        <div class="prompt-header">
+          <h3 style="margin: 0; color: #007bff;">📝 Prompt</h3>
+          <button class="copy-btn" onclick="copyPrompt()">📋 Copy</button>
+        </div>
+        <div class="prompt-text" id="promptText"></div>
+        <button class="expand-btn" id="expandBtn" onclick="togglePrompt()">Show Full</button>
+      </div>
+
+      <div class="reactions-section">
+        <div class="total-reactions" id="totalReactions">📊 Total Reactions: 0</div>
+        <div class="reaction-stats">
+          <div class="stat-item">
+            <div class="stat-number" id="likeCount">0</div>
+            <div class="stat-label">❤️ Likes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="dislikeCount">0</div>
+            <div class="stat-label">💔 Dislikes</div>
+          </div>
+        </div>
+        <div class="feedback-section">
+          <button class="like-btn feedback-btn" onclick="likePrompt()">
+            ❤️ Like
+          </button>
+          <button class="dislike-btn feedback-btn" onclick="dislikePrompt()">
+            💔 Dislike
+          </button>
+        </div>
+      </div>
+
+      <div class="description-section">
+        <h3 style="color: #333; margin-bottom: 15px;">📖 Full Description</h3>
+        <p id="fullDescription" style="line-height: 1.8; color: #555;"></p>
+      </div>
+
+      <div class="tags-container">
+        <h4 style="color: #333; margin-bottom: 15px;">🏷️ Tags</h4>
+        <div id="tagsContainer"></div>
+      </div>
+
+      <div class="meta-info">
+        <div class="meta-item">
+          <span class="meta-label">🤖 AI Model:</span>
+          <span class="meta-value" id="modelInfo"></span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">📐 Resolution:</span>
+          <span class="meta-value" id="resolutionInfo"></span>
+        </div>
+      </div>
+      
+      <!-- <div class="related-models-section">
+        <h3 style="color: #333; margin-bottom: 20px;">🎨 Try with These Models</h3>
+        <div class="model-tabs">
+          <button class="model-tab active" onclick="switchModelTab('all')">All Models</button>
+          <button class="model-tab" onclick="switchModelTab('Stable Diffusion XL')">Stable Diffusion XL</button>
+          <button class="model-tab" onclick="switchModelTab('Midjourney')">Midjourney</button>
+          <button class="model-tab" onclick="switchModelTab('NovelAI')">NovelAI</button>
+          <button class="model-tab" onclick="switchModelTab('Gemini')">Gemini</button>
+        </div>
+        <div class="related-grid" id="relatedGrid"></div>
+      </div>-->
+    </div>
+  </div>
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#" class="footer-link">About</a>
+        <a href="#" class="footer-link">Contact</a>
+        <a href="#" class="footer-link">Privacy</a>
+        <a href="#" class="footer-link">Terms</a>
+      </div>
+      <p>&copy; 2024 VoltNexis. All rights reserved. | PromptVerse</p>
+    </div>
+  </footer>
+
+  <script src="prompts.js"></script>
+  <script>
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function loadPromptDetails() {
+      const promptId = parseInt(getUrlParam('id'));
+      const prompt = prompts.find(p => p.id === promptId);
+      
+      if (!prompt) {
+        document.body.innerHTML = '<h1>Prompt not found</h1>';
+        return;
+      }
+
+      document.getElementById('promptTitle').textContent = prompt.name;
+      
+      const originalMedia = prompt.original.endsWith('.mp4') ? 
+        `<video src="${prompt.original}" controls loop autoplay muted></video>` : 
+        `<img src="${prompt.original}" alt="Original">`;
+      const aiMedia = prompt.ai.endsWith('.mp4') ? 
+        `<video src="${prompt.ai}" controls loop autoplay muted></video>` : 
+        `<img src="${prompt.ai}" alt="AI Generated">`;
+      
+      document.getElementById('originalMedia').innerHTML = originalMedia;
+      document.getElementById('aiMedia').innerHTML = aiMedia;
+      document.getElementById('shortDescription').textContent = prompt.short;
+      document.getElementById('promptText').textContent = prompt.prompt;
+      document.getElementById('fullDescription').textContent = prompt.description;
+      document.getElementById('modelInfo').textContent = prompt.model;
+      document.getElementById('resolutionInfo').textContent = prompt.resolution;
+      
+      const totalReactions = prompt.likes + prompt.dislikes;
+      document.getElementById('totalReactions').textContent = `📊 Total Reactions: ${totalReactions}`;
+      document.getElementById('likeCount').textContent = prompt.likes;
+      document.getElementById('dislikeCount').textContent = prompt.dislikes;
+      
+      const tagsContainer = document.getElementById('tagsContainer');
+      tagsContainer.innerHTML = prompt.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    }
+
+    function togglePrompt() {
+      const promptText = document.getElementById('promptText');
+      const expandBtn = document.getElementById('expandBtn');
+      
+      if (promptText.classList.contains('prompt-expanded')) {
+        promptText.classList.remove('prompt-expanded');
+        expandBtn.textContent = 'Show Full';
+      } else {
+        promptText.classList.add('prompt-expanded');
+        expandBtn.textContent = 'Show Less';
+      }
+    }
+
+    function copyPrompt() {
+      const promptId = parseInt(getUrlParam('id'));
+      const prompt = prompts.find(p => p.id === promptId);
+      navigator.clipboard.writeText(prompt.prompt);
+      
+      const copyBtn = document.querySelector('.copy-btn');
+      const originalText = copyBtn.innerHTML;
+      copyBtn.innerHTML = '✅ Copied!';
+      setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+      }, 2000);
+    }
+
+    function likePrompt() {
+      const promptId = parseInt(getUrlParam('id'));
+      const prompt = prompts.find(p => p.id === promptId);
+      prompt.likes++;
+      
+      saveReactions();
+      
+      const likeBtn = document.querySelector('.like-btn');
+      likeBtn.innerHTML = '💚 Liked!';
+      
+      document.getElementById('likeCount').textContent = prompt.likes;
+      document.getElementById('totalReactions').textContent = `📊 Total Reactions: ${prompt.likes + prompt.dislikes}`;
+      
+      setTimeout(() => {
+        likeBtn.innerHTML = '❤️ Like';
+      }, 2000);
+    }
+
+    function dislikePrompt() {
+      const promptId = parseInt(getUrlParam('id'));
+      const prompt = prompts.find(p => p.id === promptId);
+      prompt.dislikes++;
+      
+      saveReactions();
+      
+      const dislikeBtn = document.querySelector('.dislike-btn');
+      dislikeBtn.innerHTML = '👎 Disliked!';
+      
+      document.getElementById('dislikeCount').textContent = prompt.dislikes;
+      document.getElementById('totalReactions').textContent = `📊 Total Reactions: ${prompt.likes + prompt.dislikes}`;
+      
+      setTimeout(() => {
+        dislikeBtn.innerHTML = '💔 Dislike';
+      }, 2000);
+    }
+
+    function loadReactions() {
+      const saved = localStorage.getItem('promptReactions');
+      if (saved) {
+        const reactions = JSON.parse(saved);
+        prompts.forEach(p => {
+          if (reactions[p.id]) {
+            p.likes = reactions[p.id].likes || p.likes;
+            p.dislikes = reactions[p.id].dislikes || p.dislikes;
+          }
+        });
+      }
+    }
+
+    function saveReactions() {
+      const reactions = {};
+      prompts.forEach(p => {
+        reactions[p.id] = { likes: p.likes, dislikes: p.dislikes };
+      });
+      localStorage.setItem('promptReactions', JSON.stringify(reactions));
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    let currentModelFilter = 'all';
+    
+    function switchModelTab(model) {
+      currentModelFilter = model;
+      document.querySelectorAll('.model-tab').forEach(tab => tab.classList.remove('active'));
+      event.target.classList.add('active');
+      loadRelatedModels();
+    }
+    
+    function loadRelatedModels() {
+      const currentPromptId = parseInt(getUrlParam('id'));
+      const currentPrompt = prompts.find(p => p.id === currentPromptId);
+      
+      let relatedPrompts = prompts.filter(p => 
+        p.id !== currentPromptId && 
+        p.basePrompt === currentPrompt.basePrompt
+      );
+      
+      if (currentModelFilter !== 'all') {
+        relatedPrompts = relatedPrompts.filter(p => p.model === currentModelFilter);
+      }
+      
+      const grid = document.getElementById('relatedGrid');
+      grid.innerHTML = '';
+      
+      if (relatedPrompts.length === 0) {
+        grid.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No variations available for this prompt with other models.</p>';
+        return;
+      }
+      
+      relatedPrompts.slice(0, 6).forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'related-card';
+        card.onclick = () => window.location.href = `prompt_detail.html?id=${p.id}`;
+        
+        const originalMedia = p.original.endsWith('.mp4') ? 
+          `<video src="${p.original}" muted loop></video>` : 
+          `<img src="${p.original}" alt="Original">`;
+        const aiMedia = p.ai.endsWith('.mp4') ? 
+          `<video src="${p.ai}" muted loop></video>` : 
+          `<img src="${p.ai}" alt="AI Result">`;
+        
+        card.innerHTML = `
+          <div class="related-images">
+            ${originalMedia}
+            ${aiMedia}
+          </div>
+          <div class="related-content">
+            <div class="related-title">${p.name}</div>
+            <div class="related-model">${p.model}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    loadReactions();
+    loadPromptDetails();
+    loadRelatedModels();
+  </script>
+</body>
+</html>

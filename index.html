@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptVerse - AI Art Prompt Library | VoltNexis</title>
+  <meta name="description" content="Discover amazing AI-generated art prompts for Stable Diffusion, Midjourney, and NovelAI. Browse curated prompts with before/after comparisons.">
+  <meta name="keywords" content="AI prompts, Stable Diffusion, Midjourney, NovelAI, AI art, prompt library, AI generated art, machine learning">
+  <meta name="author" content="VoltNexis">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://voltnexis.github.io/prompts/">
+
+  <meta property="og:title" content="PromptVerse - AI Art Prompt Library">
+  <meta property="og:description" content="Discover amazing AI-generated art prompts with before/after comparisons. Browse curated prompts for Stable Diffusion, Midjourney, and more.">
+  <meta property="og:url" content="https://voltnexis.github.io/prompts/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://voltnexis.github.io/prompts/assets/logo.png">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PromptVerse - AI Art Prompt Library">
+  <meta name="twitter:description" content="Discover amazing AI-generated art prompts with before/after comparisons.">
+  <meta name="twitter:image" content="https://voltnexis.github.io/prompts/assets/logo.png">
+
+  <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logo/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/logo/android-chrome-512x512.png">
+  <link rel="manifest" href="assets/logo/site.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0; padding: 0; min-height: 100vh; }
+    .header { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57); background-size: 300% 300%; animation: gradientShift 4s ease infinite; padding: 20px; text-align: center; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .logo { height: 60px; width: 60px; border-radius: 12px; }
+    .header-brand { display: flex; align-items: center; gap: 15px; }
+    .header-text { text-align: center; }
+    @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .main-title { font-family: 'Poppins', sans-serif; font-size: 2.8rem; font-weight: 700; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .subtitle { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 300; margin: 3px 0 0; opacity: 0.9; }
+    .brand { font-size: 0.9rem; margin-top: 3px; opacity: 0.8; }
+    .upload-btn { background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); color: white; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 600; margin-top: 8px; transition: all 0.3s; }
+    .upload-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+    .container { background: #f5f5f5; margin: 0; padding: 20px; min-height: calc(100vh - 150px); border-radius: 20px 20px 0 0; margin-top: -10px; position: relative; z-index: 1; }
+    .search-container { margin-bottom: 30px; display: flex; gap: 10px; align-items: center; max-width: 600px; }
+    .search-box { flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; }
+    .filter-btn { padding: 12px; border: 2px solid #007bff; background: #007bff; color: white; border-radius: 8px; cursor: pointer; font-size: 16px; white-space: nowrap; transition: all 0.3s; }
+    .filter-btn:hover { background: #0056b3; transform: translateY(-2px); }
+    .filter-popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+    .filter-content { background: white; margin: 50px auto; padding: 30px; max-width: 600px; border-radius: 12px; max-height: 80vh; overflow-y: auto; }
+    .filter-tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 20px; }
+    .filter-tab { padding: 12px 24px; cursor: pointer; border: none; background: none; font-size: 16px; color: #666; border-bottom: 3px solid transparent; transition: all 0.3s; }
+    .filter-tab.active { color: #007bff; border-bottom-color: #007bff; font-weight: bold; }
+    .filter-tab:hover { color: #007bff; }
+    .filter-content-area { min-height: 200px; }
+    .filter-section { display: none; margin-bottom: 25px; }
+    .filter-section.active { display: block; }
+    .filter-search { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px; }
+    .filter-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-option { padding: 6px 12px; border: 1px solid #ddd; border-radius: 20px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+    .filter-option:hover { background: #f0f0f0; transform: scale(1.05); }
+    .filter-option.selected { background: #007bff; color: white; border-color: #007bff; }
+    .filter-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+    .btn-clear { background: #6c757d; color: white; }
+    .btn-apply { background: #28a745; color: white; }
+    .close-filter { float: right; font-size: 24px; cursor: pointer; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: #fff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); overflow: hidden; cursor: pointer; transition: all 0.3s; position: relative; border: 1px solid rgba(255,255,255,0.2); }
+    .card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+    .model-badge { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; z-index: 2; }
+    .images { display: flex; position: relative; }
+    .images img, .images video { width: 50%; height: 220px; object-fit: cover; }
+    .media-type-badge { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); color: #333; padding: 2px 6px; border-radius: 8px; font-size: 10px; z-index: 3; }
+    .card-content { padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); }
+    .card h3 { margin: 0 0 12px; font-size: 18px; font-weight: 600; color: #2c3e50; }
+    .card p { color: #6c757d; font-size: 14px; margin: 0; line-height: 1.5; }
+    .highlight { background: yellow; }
+    .btn { padding: 10px 15px; margin: 5px; border: none; border-radius: 6px; cursor: pointer; }
+    .btn-primary { background: #007bff; color: white; }
+    .fade-in { animation: fadeIn 0.8s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .footer { background: linear-gradient(45deg, #2c3e50, #34495e); color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; flex-wrap: wrap; }
+    .footer-link { color: #ecf0f1; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+    .footer-link:hover { color: #3498db; transform: translateY(-2px); }
+    @media (max-width: 768px) {
+      body { padding: 0; }
+      .container { padding: 10px; }
+      .grid { grid-template-columns: 1fr; }
+      .search-container { flex-direction: column; align-items: stretch; max-width: 100%; }
+      .filter-tabs { flex-wrap: wrap; }
+      .filter-tab { flex: 1; min-width: 80px; }
+      .main-title { font-size: 2rem; }
+      .header { padding: 15px; }
+      .header-brand { gap: 10px; }
+      .logo { height: 50px; width: 50px; }
+      .container { border-radius: 15px 15px 0 0; margin-top: -5px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-brand">
+      <img src="assets/logo/logo.png" alt="PromptVerse Logo" class="logo">
+      <h1 class="main-title">PromptVerse</h1>
+    </div>
+    <div class="header-text">
+      <p class="subtitle">Discover Amazing AI-Generated Art Prompts</p>
+      <p class="brand">✨ by <strong>VoltNexis</strong></p>
+      <button class="upload-btn" onclick="window.location.href='upload.html'">📤 Upload Your Prompt</button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="search-container">
+      <input type="text" class="search-box" placeholder="Search prompts..." id="searchBox">
+      <button class="filter-btn" onclick="openFilterPopup()">🔍 Filter</button>
+    </div>
+
+    <div class="filter-popup" id="filterPopup">
+      <div class="filter-content">
+        <span class="close-filter" onclick="closeFilterPopup()">&times;</span>
+        <h2>Filter Prompts</h2>
+        
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="switchTab('tags')">Tags</button>
+          <button class="filter-tab" onclick="switchTab('model')">Model</button>
+          <button class="filter-tab" onclick="switchTab('resolution')">Resolution</button>
+        </div>
+        
+        <div class="filter-section">
+          <input type="text" class="filter-search" placeholder="Search in filters..." id="filterSearch">
+        </div>
+        
+        <div class="filter-content-area">
+          <div class="filter-section active" id="tagsSection">
+            <input type="text" class="filter-search" placeholder="Search tags..." id="tagSearch" style="margin-bottom: 15px;">
+            <div class="filter-options" id="tagFilters"></div>
+          </div>
+          
+          <div class="filter-section" id="modelSection">
+            <div class="filter-options" id="modelFilters"></div>
+          </div>
+          
+          <div class="filter-section" id="resolutionSection">
+            <div class="filter-options" id="resolutionFilters"></div>
+          </div>
+        </div>
+        
+        <div class="filter-actions">
+          <button class="btn btn-clear" onclick="clearFilters()">Clear All</button>
+          <button class="btn btn-apply" onclick="applyFilters()">Apply Filters</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid fade-in" id="promptGrid"></div>
+  </div>
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#" class="footer-link">About</a>
+        <a href="#" class="footer-link">Contact</a>
+        <a href="#" class="footer-link">Privacy</a>
+        <a href="#" class="footer-link">Terms</a>
+      </div>
+      <p>&copy; 2024 VoltNexis. All rights reserved. | PromptVerse</p>
+    </div>
+  </footer>
+
+  <script src="prompts.js"></script>
+  <script>
+    let filteredPrompts = prompts;
+    let selectedTags = [];
+    let selectedModel = '';
+    let selectedResolution = '';
+    let currentTab = 'tags';
+
+    function renderGrid() {
+      const grid = document.getElementById("promptGrid");
+      grid.innerHTML = '';
+      
+      filteredPrompts.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card fade-in";
+        card.onclick = () => window.location.href = `prompt_detail.html?id=${p.id}`;
+        
+        const isMobile = window.innerWidth <= 768;
+        const originalMedia = p.original.endsWith('.mp4') ? 
+          `<video src="${p.original}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.original}" alt="Original">`;
+        const aiMedia = p.ai.endsWith('.mp4') ? 
+          `<video src="${p.ai}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.ai}" alt="AI Result">`;
+        
+        card.innerHTML = `
+          <div class="model-badge">${p.model}</div>
+          <div class="images">
+            ${originalMedia}
+            ${aiMedia}
+            ${(p.original.endsWith('.mp4') || p.ai.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
+          </div>
+          <div class="card-content">
+            <h3>${p.name}</h3>
+            <p>${p.short}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function highlightText(text, query) {
+      if (!query) return text;
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+
+    function search(query) {
+      if (!query) {
+        filteredPrompts = prompts;
+      } else {
+        filteredPrompts = prompts.filter(p => 
+          p.name.toLowerCase().includes(query.toLowerCase()) ||
+          p.description.toLowerCase().includes(query.toLowerCase()) ||
+          p.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase())) ||
+          p.model.toLowerCase().includes(query.toLowerCase())
+        );
+      }
+      
+      const grid = document.getElementById("promptGrid");
+      grid.innerHTML = '';
+      
+      filteredPrompts.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card fade-in";
+        card.onclick = () => window.location.href = `prompt_detail.html?id=${p.id}`;
+        
+        const isMobile = window.innerWidth <= 768;
+        const originalMedia = p.original.endsWith('.mp4') ? 
+          `<video src="${p.original}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.original}" alt="Original">`;
+        const aiMedia = p.ai.endsWith('.mp4') ? 
+          `<video src="${p.ai}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.ai}" alt="AI Result">`;
+        
+        card.innerHTML = `
+          <div class="model-badge">${p.model}</div>
+          <div class="images">
+            ${originalMedia}
+            ${aiMedia}
+            ${(p.original.endsWith('.mp4') || p.ai.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
+          </div>
+          <div class="card-content">
+            <h3>${highlightText(p.name, query)}</h3>
+            <p>${highlightText(p.short, query)}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openFilterPopup() {
+      populateFilterOptions();
+      document.getElementById('filterPopup').style.display = 'block';
+      
+      setTimeout(() => {
+        const filterSearch = document.getElementById('filterSearch');
+        const tagSearch = document.getElementById('tagSearch');
+        
+        if (filterSearch) {
+          filterSearch.addEventListener('input', (e) => {
+            updateFilterSearch(e.target.value);
+          });
+        }
+        
+        if (tagSearch) {
+          tagSearch.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const tagOptions = document.querySelectorAll('#tagFilters .filter-option');
+            tagOptions.forEach(option => {
+              if (option.textContent.toLowerCase().includes(query)) {
+                option.style.display = 'block';
+              } else {
+                option.style.display = 'none';
+              }
+            });
+          });
+        }
+      }, 50);
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      document.querySelectorAll('.filter-content-area .filter-section').forEach(s => s.classList.remove('active'));
+      document.getElementById(tab + 'Section').classList.add('active');
+      
+      document.getElementById('filterSearch').value = '';
+      if (document.getElementById('tagSearch')) document.getElementById('tagSearch').value = '';
+      updateFilterSearch('');
+    }
+
+    function updateFilterSearch(query) {
+      const activeSection = document.querySelector('.filter-content-area .filter-section.active');
+      const options = activeSection.querySelectorAll('.filter-option');
+      options.forEach(option => {
+        if (option.textContent.toLowerCase().includes(query.toLowerCase())) {
+          option.style.display = 'block';
+        } else {
+          option.style.display = 'none';
+        }
+      });
+    }
+
+    function closeFilterPopup() {
+      document.getElementById('filterPopup').style.display = 'none';
+    }
+
+    function populateFilterOptions() {
+      const allTags = [...new Set(prompts.flatMap(p => p.tags))];
+      const allModels = [...new Set(prompts.map(p => p.model))];
+      const allResolutions = [...new Set(prompts.map(p => p.resolution))];
+      
+      document.getElementById('tagFilters').innerHTML = allTags.map(tag => 
+        `<div class="filter-option ${selectedTags.includes(tag) ? 'selected' : ''}" onclick="toggleTag('${tag}')">${tag}</div>`
+      ).join('');
+      
+      document.getElementById('modelFilters').innerHTML = allModels.map(model => 
+        `<div class="filter-option ${selectedModel === model ? 'selected' : ''}" onclick="selectModel('${model}')">${model}</div>`
+      ).join('');
+      
+      document.getElementById('resolutionFilters').innerHTML = allResolutions.map(res => 
+        `<div class="filter-option ${selectedResolution === res ? 'selected' : ''}" onclick="selectResolution('${res}')">${res}</div>`
+      ).join('');
+    }
+
+    function toggleTag(tag) {
+      if (selectedTags.includes(tag)) {
+        selectedTags = selectedTags.filter(t => t !== tag);
+      } else {
+        selectedTags.push(tag);
+      }
+      populateFilterOptions();
+    }
+
+    function selectModel(model) {
+      selectedModel = selectedModel === model ? '' : model;
+      populateFilterOptions();
+    }
+
+    function selectResolution(resolution) {
+      selectedResolution = selectedResolution === resolution ? '' : resolution;
+      populateFilterOptions();
+    }
+
+    function clearFilters() {
+      selectedTags = [];
+      selectedModel = '';
+      selectedResolution = '';
+      populateFilterOptions();
+    }
+
+    function applyFilters() {
+      filteredPrompts = prompts.filter(p => {
+        const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => p.tags.includes(tag));
+        const modelMatch = !selectedModel || p.model === selectedModel;
+        const resolutionMatch = !selectedResolution || p.resolution === selectedResolution;
+        return tagMatch && modelMatch && resolutionMatch;
+      });
+      
+      renderFilteredGrid();
+      closeFilterPopup();
+    }
+
+    function renderFilteredGrid() {
+      const grid = document.getElementById("promptGrid");
+      grid.innerHTML = '';
+      
+      filteredPrompts.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card fade-in";
+        card.onclick = () => window.location.href = `prompt_detail.html?id=${p.id}`;
+        
+        const isMobile = window.innerWidth <= 768;
+        const originalMedia = p.original.endsWith('.mp4') ? 
+          `<video src="${p.original}" muted loop ${isMobile ? 'autoplay' : ''} preload="${isMobile ? 'metadata' : 'none'}" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.original}" alt="Original">`;
+        const aiMedia = p.ai.endsWith('.mp4') ? 
+          `<video src="${p.ai}" muted loop ${isMobile ? 'autoplay' : ''} preload="${isMobile ? 'metadata' : 'none'}" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.ai}" alt="AI Result">`;
+        
+        card.innerHTML = `
+          <div class="model-badge">${p.model}</div>
+          <div class="images">
+            ${originalMedia}
+            ${aiMedia}
+            ${(p.original.endsWith('.mp4') || p.ai.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
+          </div>
+          <div class="card-content">
+            <h3>${p.name}</h3>
+            <p>${p.short}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function loadReactions() {
+      const saved = localStorage.getItem('promptReactions');
+      if (saved) {
+        const reactions = JSON.parse(saved);
+        prompts.forEach(p => {
+          if (reactions[p.id]) {
+            p.likes = reactions[p.id].likes || p.likes;
+            p.dislikes = reactions[p.id].dislikes || p.dislikes;
+          }
+        });
+      }
+    }
+
+    function saveReactions() {
+      const reactions = {};
+      prompts.forEach(p => {
+        reactions[p.id] = { likes: p.likes, dislikes: p.dislikes };
+      });
+      localStorage.setItem('promptReactions', JSON.stringify(reactions));
+    }
+
+    document.getElementById('searchBox').addEventListener('input', (e) => {
+      search(e.target.value);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.id === 'filterPopup') closeFilterPopup();
+    });
+
+    loadReactions();
+    renderGrid();
+  </script>
+</body>
+</html>
