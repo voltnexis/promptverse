@@ -196,8 +196,21 @@ const prompts = [
   "resolution": "2160x3840",
   "likes": 0,
   "dislikes": 0
+},
+{
+  "id": 16,
+  "name": "Urban Street Racer Portrait",
+  "short": "Baggy streetwear, BMW E46 M3, neon-lit Asian city",
+  "description": "A cinematic visualization of the subject as a confident young man wearing a drop-shoulder oversized T-shirt and baggy jeans, leaning casually against a highly customized BMW E46 M3. The car features a sleek, modern blue and silver street racing paint job. The setting is a bustling Asian city road (Dhaka or Bangkok) filled with motion-blurred pedestrians and neon-lit traffic, creating a dynamic and urban atmosphere. The mood is gritty, inspired by the Need for Speed game series, with moody lighting, wet street reflections, and a strong glow from neon signs. The subject’s original face, hairstyle, and skin tone remain unchanged.",
+  "original": "assets/img/street_racer_original.webp",
+  "ai": "assets/img/street_racer_ai.webp",
+  "prompt": "Visualize this person as a confident young man wearing a drop-shoulder oversized T-shirt and baggy jeans, leaning casually against a highly customized BMW E46 M3 with a sleek modern blue and silver street racing paint job. The setting is a bustling Asian city road (Dhaka or Bangkok) filled with motion-blurred people and neon-lit traffic. The scene should have a cinematic, gritty, urban feel inspired by the Need for Speed game series. The lighting is moody with street reflections and a strong glow from nearby signs. KEEP the person’s original face, hairstyle, and skin tone exactly the same — no facial changes at all. Aspect ratio: 9:16.",
+  "tags": ["streetwear", "BMW", "urban", "cinematic", "neon", "Need for Speed", "cityscape", "fashion"],
+  "model": "Stable Diffusion XL",
+  "resolution": "2160x3840",
+  "likes": 0,
+  "dislikes": 0
 }
-
 
 /*
   {
