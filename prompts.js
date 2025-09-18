@@ -10,8 +10,8 @@ const prompts = [
   tags: ["figurine", "collectible", "toy", "desk setup", "realistic", "premium packaging"],
   model: "Gemini",
   resolution: "1920x1080",
-  likes: 0,
-  dislikes: 0,
+  likes: 60,
+  dislikes: 3,
   basePrompt: "figurine",
   owner: "VoltNexis"
   },
@@ -26,7 +26,7 @@ const prompts = [
   tags: ["portrait", "cinematic", "noir", "luxury", "hyper-realistic", "elite"],
   model: "Gemini",
   resolution: "1536x1024",
-  likes: 0,
+  likes: 5,
   dislikes: 0
 },
 {
@@ -40,7 +40,7 @@ const prompts = [
   tags: ["portrait", "saree", "fashion", "ultra realistic", "cinematic", "fabric texture"],
   model: "Gemini",
   resolution: "2048x1365",
-  likes: 0,
+  likes: 9,
   dislikes: 0
 },
 {
@@ -68,8 +68,8 @@ const prompts = [
   tags: ["portrait", "cinematic", "golden light", "editorial", "fashion", "south asian", "ultra-realistic"],
   model: "Gemini",
   resolution: "2048x1365",
-  likes: 0,
-  dislikes: 0
+  likes: 132,
+  dislikes: 4
 },
 {
   id: 6,
@@ -82,7 +82,7 @@ const prompts = [
   tags: ["double exposure", "cinematic", "post-apocalyptic", "concept art", "cityscape", "heroic", "introspective"],
   model: "Gemini",
   resolution: "7680x4320",
-  likes: 0,
+  likes: 94,
   dislikes: 0
 },
 {
@@ -96,7 +96,7 @@ const prompts = [
   tags: ["portrait", "fashion", "rain", "cinematic", "editorial", "blue tones", "emotional"],
   model: "Gemini",
   resolution: "4096x2730",
-  likes: 0,
+  likes: 2,
   dislikes: 0
 },
 {
@@ -110,7 +110,7 @@ const prompts = [
   tags: ["cyberpunk", "neon", "futuristic", "Blade Runner", "cinematic", "rain", "ultra-detailed"],
   model: "Gemini",
   resolution: "3840x2160",
-  likes: 0,
+  likes: 34,
   dislikes: 0
 },
 {
@@ -124,8 +124,8 @@ const prompts = [
   tags: ["festival", "Holi", "Indian attire", "vibrant", "traditional", "cinematic"],
   model: "Gemini",
   resolution: "2048x1365",
-  likes: 0,
-  dislikes: 0
+  likes: 298,
+  dislikes: 5
 },
 {
   id: 11,
