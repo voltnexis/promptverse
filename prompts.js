@@ -182,7 +182,23 @@ const prompts = [
   "resolution": "3840x2160",
   "likes": 0,
   "dislikes": 0
+},
+{
+  "id": 15,
+  "name": "Tokyo Neon Night Portrait",
+  "short": "Stylish model in Tokyo night scene",
+  "description": "A cinematic portrait of a stylish young male model set against the iconic Tokyo night atmosphere. The background features colorful neon lights, large digital billboards, glowing Japanese shop signs, and wet streets reflecting the vibrant colors after rain. A few pedestrians in the distance add an authentic urban touch, while the focus remains on the subject. The image blends fashion photography with the cinematic vibrancy of Tokyo’s nightlife.",
+  "original": "assets/img/tokyo_night_original.webp",
+  "ai": "assets/img/tokyo_night_ai.webp",
+  "prompt": "The background captures the iconic night atmosphere of Tokyo: colorful neon lights, large digital billboards, shops with Japanese signs, and wet streets reflecting the lights after rain. A few pedestrians walk in the distance, adding an urban vibe while keeping the focus on the main subject. Aspect ratio: 9:16.",
+  "tags": ["fashion", "tokyo", "neon", "urban", "cinematic", "nightlife"],
+  "model": "Stable Diffusion XL",
+  "resolution": "2160x3840",
+  "likes": 0,
+  "dislikes": 0
 }
+
+
 /*
   {
     id: 1000001,
