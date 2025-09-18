@@ -136,7 +136,7 @@ const prompts = [
   ai: "assets/img/cyberpunk_portrait_ai.webp",
   prompt: "Transform this portrait into a futuristic cyberpunk look. Add glowing neon tattoos, a high-tech headset, and a holographic city background. Keep the person’s face recognizable but enhance with cyberpunk aesthetics. Make it ultra detailed and cinematic with neon lighting.",
   tags: ["portrait", "cyberpunk", "futuristic", "neon", "holographic", "cinematic", "ultra detailed"],
-  model: "Stable Diffusion XL",
+  model: "Gemini",
   resolution: "3840x2160",
   likes: 0,
   dislikes: 0
@@ -150,7 +150,7 @@ const prompts = [
   ai: "assets/img/pixar_cartoon_ai.webp",
   prompt: "Turn this photo into a Pixar-style 3D cartoon version. Keep the facial features and hairstyle recognizable but render them in soft, detailed animation style. Background should remain simple with bright cheerful colors.",
   tags: ["portrait", "Pixar", "3D cartoon", "animation", "stylized", "cheerful", "soft detail"],
-  model: "Stable Diffusion XL",
+  model: "Gemini",
   resolution: "3840x2160",
   likes: 0,
   dislikes: 0
@@ -164,7 +164,7 @@ const prompts = [
   "ai": "assets/img/linkedin_headshot_ai.webp",
   "prompt": "Transform this casual photo of a person into a professional headshot for LinkedIn. Keep the face, expression, and skin tone unchanged, but change the outfit into a formal suit. Use a clean background with soft lighting. Make the image look sharp, realistic, and business-ready.",
   "tags": ["portrait", "professional", "headshot", "business", "LinkedIn", "formal"],
-  "model": "Stable Diffusion XL",
+  "model": "Gemini",
   "resolution": "2048x2048",
   "likes": 0,
   "dislikes": 0
