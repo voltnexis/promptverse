@@ -41,19 +41,23 @@
     .back-btn:hover { background: rgba(255,255,255,0.3); }
     .content { padding: 40px; }
     .image-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
-    .image-card { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-    .image-card img, .image-card video { width: 100%; height: 300px; object-fit: cover; cursor: pointer; }
+    .image-card { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); aspect-ratio: 1; }
+    .image-card img, .image-card video { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+    .image-card.auto-height { aspect-ratio: auto; }
+    .image-card.auto-height img, .image-card.auto-height video { height: auto; object-fit: contain; }
     .image-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; cursor: pointer; }
     .image-overlay img, .image-overlay video { max-width: 90%; max-height: 90%; object-fit: contain; }
     .image-label { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.7); color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+    .mobile-labels { display: none; text-align: center; margin-bottom: 15px; }
+    .mobile-label { display: inline-block; background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 8px 16px; margin: 0 10px; border-radius: 20px; font-size: 14px; font-weight: bold; }
     .prompt-container { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 30px 0; position: relative; border-left: 5px solid #007bff; }
-    .prompt-header { display: flex; justify-content: between; align-items: center; margin-bottom: 15px; }
+    .prompt-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
     .prompt-text { font-family: 'Courier New', monospace; line-height: 1.6; color: #333; overflow: hidden; max-height: 4.8em; transition: max-height 0.3s ease; }
     .prompt-expanded { max-height: none; }
     .action-buttons { display: flex; gap: 15px; margin-top: 15px; }
     .expand-btn { background: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 25px; cursor: pointer; font-size: 12px; transition: all 0.3s; }
     .expand-btn:hover { background: #5a6268; transform: translateY(-2px); }
-    .copy-btn { position: absolute; top: 20px; right: 20px; background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 25px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.3s; }
+    .copy-btn { background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 25px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.3s; margin-top: 15px; }
     .copy-btn:hover { background: #218838; transform: translateY(-2px); }
     .reactions-section { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 30px 0; text-align: center; }
     .reaction-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 25px; }
@@ -94,9 +98,10 @@
       body { padding: 0; }
       .container { margin: 10px; border-radius: 15px; }
       .content { padding: 20px; }
-      .image-section { grid-template-columns: 1fr; gap: 20px; }
+      .image-section { grid-template-columns: 1fr 1fr; gap: 15px; }
       .feedback-section { flex-direction: column; align-items: center; }
-      .copy-btn { position: static; margin-top: 15px; }
+      .mobile-labels { display: block; }
+      .image-label { display: none; }
       .header { padding: 15px; }
       .header-brand { gap: 10px; }
       .logo { height: 50px; width: 50px; }
@@ -122,6 +127,11 @@
   <div class="container fade-in">
     <div class="content">
       <h1 id="promptTitle" style="text-align: center; color: #333; margin-bottom: 30px;">Prompt Details</h1>
+      
+      <div class="mobile-labels">
+        <span class="mobile-label">🎨 Original</span>
+        <span class="mobile-label">🤖 AI Generated</span>
+      </div>
       
       <div class="image-section">
         <div class="image-card">
@@ -246,9 +256,17 @@
       document.getElementById('originalMedia').innerHTML = originalMedia;
       document.getElementById('aiMedia').innerHTML = aiMedia;
       
-      // Add click listeners to images
+      // Add click listeners and check image dimensions
       document.querySelectorAll('.image-card img, .image-card video').forEach(media => {
         media.onclick = () => showImageOverlay(media.src || media.querySelector('source')?.src);
+        
+        if (media.tagName === 'IMG') {
+          media.onload = () => {
+            if (media.naturalHeight < media.naturalWidth * 0.8) {
+              media.parentElement.classList.add('auto-height');
+            }
+          };
+        }
       });
       document.getElementById('shortDescription').textContent = prompt.short;
       document.getElementById('promptText').textContent = prompt.prompt;
