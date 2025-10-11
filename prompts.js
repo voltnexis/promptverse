@@ -476,6 +476,76 @@ const prompts = [
     "resolution": "3840x2160",
     "likes": 142,
     "dislikes": 6
+  },
+  {
+    "id": 36,
+    "name": "Starlit Sorceress",
+    "short": "Girl as cosmic sorceress under starry night sky",
+    "description": "Transform the girl into a powerful sorceress standing on a cliff under a starry night sky. Her hair glows subtly with cosmic lights, and magical glyphs float around her hands. Keep her face fully realistic. Cinematic lighting, ethereal textures, flowing mystical robes, and an enchanting, otherworldly atmosphere.",
+    "original": "assets/img/starlit_sorceress_original.webp",
+    "ai": "assets/img/starlit_sorceress_ai.webp",
+    "prompt": "Transform the girl into a powerful sorceress standing on a cliff under a starry night sky. Her hair glows subtly with cosmic lights, and magical glyphs float around her hands. Keep her face fully realistic. Cinematic lighting, ethereal textures, flowing mystical robes, and an enchanting, otherworldly atmosphere.",
+    "tags": ["girl", "sorceress", "fantasy", "cinematic", "realistic", "magic"],
+    "model": "ChatGPT",
+    "resolution": "3840x2160",
+    "likes": 211,
+    "dislikes": 5
+  },
+  {
+    "id": 37,
+    "name": "Rainy City Diva",
+    "short": "Girl walking in neon-lit rainy city",
+    "description": "Visualize the girl walking through a neon-lit rainy city street. Her umbrella glows softly, wet pavement reflects neon signs, and rain droplets cling to her hair and clothing. Face remains realistic. Ultra-realistic textures, cinematic depth-of-field, stylish urban fashion, dramatic moody lighting, and vibrant reflections.",
+    "original": "assets/img/rainy_city_diva_original.webp",
+    "ai": "assets/img/rainy_city_diva_ai.webp",
+    "prompt": "Visualize the girl walking through a neon-lit rainy city street. Her umbrella glows softly, wet pavement reflects neon signs, and rain droplets cling to her hair and clothing. Face remains realistic. Ultra-realistic textures, cinematic depth-of-field, stylish urban fashion, dramatic moody lighting, and vibrant reflections.",
+    "tags": ["girl", "urban", "cinematic", "neon", "realistic", "rain"],
+    "model": "ChatGPT",
+    "resolution": "3840x2160",
+    "likes": 189,
+    "dislikes": 7
+  },
+  {
+    "id": 38,
+    "name": "Forest Spirit Maiden",
+    "short": "Girl as mystical guardian in glowing forest",
+    "description": "Place the girl in a mystical forest with soft fog, glowing fireflies, and sun rays piercing through the canopy. Her clothing is made of natural leaves, flowers, and flowing fabrics. Keep her face fully realistic. Ultra-realistic textures, cinematic lighting, magical realism tone, ethereal and enchanting atmosphere.",
+    "original": "assets/img/forest_spirit_maiden_original.webp",
+    "ai": "assets/img/forest_spirit_maiden_ai.webp",
+    "prompt": "Place the girl in a mystical forest with soft fog, glowing fireflies, and sun rays piercing through the canopy. Her clothing is made of natural leaves, flowers, and flowing fabrics. Keep her face fully realistic. Ultra-realistic textures, cinematic lighting, magical realism tone, ethereal and enchanting atmosphere.",
+    "tags": ["girl", "forest", "magic", "cinematic", "fantasy", "realistic"],
+    "model": "ChatGPT",
+    "resolution": "3840x2160",
+    "likes": 234,
+    "dislikes": 4
+  },
+  {
+    "id": 39,
+    "name": "Cyberpunk Hacker Girl",
+    "short": "Futuristic neon hacker with holographic screens",
+    "description": "Transform the girl into a futuristic cyberpunk hacker in a neon-lit room with holographic interfaces floating around her. Her eyes reflect glowing screens, and her outfit blends sleek techwear with vibrant neon accents. Keep the face realistic. Ultra-detailed textures, cinematic lighting, and a high-tech, energetic vibe.",
+    "original": "assets/img/cyberpunk_hacker_girl_original.webp",
+    "ai": "assets/img/cyberpunk_hacker_girl_ai.webp",
+    "prompt": "Transform the girl into a futuristic cyberpunk hacker in a neon-lit room with holographic interfaces floating around her. Her eyes reflect glowing screens, and her outfit blends sleek techwear with vibrant neon accents. Keep the face realistic. Ultra-detailed textures, cinematic lighting, and a high-tech, energetic vibe.",
+    "tags": ["girl", "cyberpunk", "hacker", "futuristic", "neon", "cinematic"],
+    "model": "ChatGPT",
+    "resolution": "3840x2160",
+    "likes": 263,
+    "dislikes": 8
+  },
+  {
+    "id": 40,
+    "name": "Ocean Empress",
+    "short": "Girl as ocean queen with waves and bioluminescence",
+    "description": "Visualize the girl as an ocean empress standing on a rocky shore with waves crashing around her. Her flowing gown mimics water, and glowing bioluminescent marine creatures swirl around her. Keep her face realistic and expressive. Cinematic ultra-real textures, dramatic lighting, ethereal water effects, and magical fantasy atmosphere.",
+    "original": "assets/img/ocean_empress_original.webp",
+    "ai": "assets/img/ocean_empress_ai.webp",
+    "prompt": "Visualize the girl as an ocean empress standing on a rocky shore with waves crashing around her. Her flowing gown mimics water, and glowing bioluminescent marine creatures swirl around her. Keep her face realistic and expressive. Cinematic ultra-real textures, dramatic lighting, ethereal water effects, and magical fantasy atmosphere.",
+    "tags": ["girl", "ocean", "fantasy", "cinematic", "realistic", "water"],
+    "model": "ChatGPT",
+    "resolution": "3840x2160",
+    "likes": 248,
+    "dislikes": 6
   }
 
 /*
