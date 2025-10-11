@@ -54,8 +54,8 @@ const prompts = [
   tags: ["portrait", "black and white", "cinematic", "dramatic lighting", "water", "intense"],
   model: "Gemini",
   resolution: "1080x1350",
-  likes: 0,
-  dislikes: 0
+  likes: 114,
+  dislikes: 5
 },
 {
   id: 5,
@@ -96,8 +96,8 @@ const prompts = [
   tags: ["portrait", "fashion", "rain", "cinematic", "editorial", "blue tones", "emotional"],
   model: "Gemini",
   resolution: "4096x2730",
-  likes: 2,
-  dislikes: 0
+  likes: 87,
+  dislikes: 3
 },
 {
   id: 8,
@@ -138,8 +138,8 @@ const prompts = [
   tags: ["portrait", "cyberpunk", "futuristic", "neon", "holographic", "cinematic", "ultra detailed"],
   model: "Gemini",
   resolution: "3840x2160",
-  likes: 0,
-  dislikes: 0
+  likes: 47,
+  dislikes: 2
 },
 {
   id: 12,
@@ -152,8 +152,8 @@ const prompts = [
   tags: ["portrait", "Pixar", "3D cartoon", "animation", "stylized", "cheerful", "soft detail"],
   model: "Gemini",
   resolution: "3840x2160",
-  likes: 0,
-  dislikes: 0
+  likes: 23,
+  dislikes: 1
 },
 {
   "id": 13,
@@ -166,8 +166,8 @@ const prompts = [
   "tags": ["portrait", "professional", "headshot", "business", "LinkedIn", "formal"],
   "model": "Gemini",
   "resolution": "2048x2048",
-  "likes": 0,
-  "dislikes": 0
+  "likes": 89,
+  "dislikes": 4
 },
 {
   "id": 14,
@@ -180,8 +180,8 @@ const prompts = [
   "tags": ["fashion", "modern", "minimal", "futuristic", "iPhone", "Spotify"],
   "model": "ChatGPT",
   "resolution": "3840x2160",
-  "likes": 0,
-  "dislikes": 0
+  "likes": 156,
+  "dislikes": 7
 },
 {
   "id": 15,
@@ -192,10 +192,10 @@ const prompts = [
   "ai": "assets/img/tokyo_night_ai.webp",
   "prompt": "The background captures the iconic night atmosphere of Tokyo: colorful neon lights, large digital billboards, shops with Japanese signs, and wet streets reflecting the lights after rain. A few pedestrians walk in the distance, adding an urban vibe while keeping the focus on the main subject. Aspect ratio: 9:16.",
   "tags": ["fashion", "tokyo", "neon", "urban", "cinematic", "nightlife"],
-  "model": "Stable Diffusion XL",
+  "model": "Gemini",
   "resolution": "2160x3840",
-  "likes": 0,
-  "dislikes": 0
+  "likes": 72,
+  "dislikes": 3
 },
 {
   "id": 16,
@@ -206,10 +206,10 @@ const prompts = [
   "ai": "assets/img/street_racer_ai.webp",
   "prompt": "Visualize this person as a confident young man wearing a drop-shoulder oversized T-shirt and baggy jeans, leaning casually against a highly customized BMW E46 M3 with a sleek modern blue and silver street racing paint job. The setting is a bustling Asian city road (Dhaka or Bangkok) filled with motion-blurred people and neon-lit traffic. The scene should have a cinematic, gritty, urban feel inspired by the Need for Speed game series. The lighting is moody with street reflections and a strong glow from nearby signs. KEEP the person’s original face, hairstyle, and skin tone exactly the same — no facial changes at all. Aspect ratio: 9:16.",
   "tags": ["streetwear", "BMW", "urban", "cinematic", "neon", "Need for Speed", "cityscape", "fashion"],
-  "model": "Stable Diffusion XL",
+  "model": "ChatGPT",
   "resolution": "2160x3840",
-  "likes": 0,
-  "dislikes": 0
+  "likes": 201,
+  "dislikes": 12
 },
   {
     "id": 17,
@@ -222,8 +222,8 @@ const prompts = [
     "tags": ["explorer", "rift", "universe", "cinematic", "realistic", "dreamlike"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 38,
+    "dislikes": 1
   },
   {
     "id": 18,
@@ -236,8 +236,8 @@ const prompts = [
     "tags": ["explorer", "ruins", "cinematic", "realistic", "sunlight", "emotional"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 145,
+    "dislikes": 8
   },
   {
     "id": 19,
@@ -250,8 +250,8 @@ const prompts = [
     "tags": ["explorer", "aurora", "cinematic", "realistic", "snow", "northern lights"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 67,
+    "dislikes": 2
   },
   {
     "id": 20,
@@ -264,8 +264,8 @@ const prompts = [
     "tags": ["portrait", "dreamscape", "lake", "realistic", "ethereal", "cinematic"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 93,
+    "dislikes": 5
   },
   {
     "id": 21,
@@ -278,8 +278,8 @@ const prompts = [
     "tags": ["portrait", "stealth", "city", "neon", "cinematic", "realistic"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 124,
+    "dislikes": 6
   },
   {
     "id": 22,
@@ -292,8 +292,8 @@ const prompts = [
     "tags": ["portrait", "renaissance", "oil painting", "cinematic", "realistic", "artistic"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 81,
+    "dislikes": 3
   },
   {
     "id": 23,
@@ -306,8 +306,8 @@ const prompts = [
     "tags": ["portrait", "abandoned", "city", "cinematic", "realistic", "hopeful"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 176,
+    "dislikes": 9
   },
   {
     "id": 24,
@@ -320,8 +320,8 @@ const prompts = [
     "tags": ["portrait", "forest", "magical", "cinematic", "realistic", "ethereal"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 52,
+    "dislikes": 1
   },
   {
     "id": 25,
@@ -334,8 +334,8 @@ const prompts = [
     "tags": ["portrait", "noir", "city", "black-and-white", "cinematic", "realistic"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 108,
+    "dislikes": 4
   },
   {
     "id": 26,
@@ -348,8 +348,8 @@ const prompts = [
     "tags": ["portrait", "steampunk", "cinematic", "Victorian", "realistic", "inventor"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 234,
+    "dislikes": 11
   },
   {
     "id": 27,
@@ -362,8 +362,8 @@ const prompts = [
     "tags": ["portrait", "island", "explorer", "realistic", "beach", "cinematic", "vibrant"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 76,
+    "dislikes": 2
   },
   {
     "id": 28,
@@ -376,8 +376,8 @@ const prompts = [
     "tags": ["portrait", "astronaut", "galaxy", "futuristic", "cinematic", "realistic", "space"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 159,
+    "dislikes": 7
   },
   {
     "id": 29,
@@ -390,8 +390,8 @@ const prompts = [
     "tags": ["portrait", "Victorian", "cinematic", "realistic", "historical", "luxury"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 43,
+    "dislikes": 1
   },
   {
     "id": 30,
@@ -404,8 +404,8 @@ const prompts = [
     "tags": ["portrait", "dreamscape", "magical", "cinematic", "realistic", "floating"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 187,
+    "dislikes": 8
   },
   {
     "id": 31,
@@ -418,8 +418,8 @@ const prompts = [
     "tags": ["portrait", "pilot", "futuristic", "cinematic", "sci-fi", "realistic", "HUD"],
     "model": "Gemini",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 95,
+    "dislikes": 3
   },
   {
     "id": 32,
@@ -432,8 +432,8 @@ const prompts = [
     "tags": ["portrait", "music", "studio", "cinematic", "neon", "realistic", "producer"],
     "model": "ChatGPT",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 128,
+    "dislikes": 5
   },
   {
     "id": 33,
@@ -446,8 +446,8 @@ const prompts = [
     "tags": ["portrait", "executive", "futuristic", "cinematic", "realistic", "corporate"],
     "model": "Microsoft Copilot",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 64,
+    "dislikes": 2
   },
   {
     "id": 34,
@@ -460,8 +460,8 @@ const prompts = [
     "tags": ["portrait", "fantasy", "hero", "cinematic", "realistic", "armor", "magical"],
     "model": "ChatGPT",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 213,
+    "dislikes": 10
   },
   {
     "id": 35,
@@ -474,8 +474,8 @@ const prompts = [
     "tags": ["portrait", "time-travel", "adventurer", "cinematic", "realistic", "fantasy"],
     "model": "ChatGPT",
     "resolution": "3840x2160",
-    "likes": 0,
-    "dislikes": 0
+    "likes": 142,
+    "dislikes": 6
   }
 
 /*
