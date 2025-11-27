@@ -173,7 +173,16 @@
 
   <script src="prompts.js"></script>
   <script>
-    let filteredPrompts = prompts;
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    let filteredPrompts = shuffleArray(prompts);
     let selectedTags = [];
     let selectedModel = '';
     let selectedResolution = '';
@@ -220,7 +229,7 @@
 
     function search(query) {
       if (!query) {
-        filteredPrompts = prompts;
+        filteredPrompts = shuffleArray(prompts);
       } else {
         filteredPrompts = prompts.filter(p => 
           p.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -323,9 +332,15 @@
     }
 
     function populateFilterOptions() {
-      const allTags = [...new Set(prompts.flatMap(p => p.tags))];
-      const allModels = [...new Set(prompts.map(p => p.model))];
-      const allResolutions = [...new Set(prompts.map(p => p.resolution))];
+      const tagCounts = {};
+      prompts.forEach(p => {
+        p.tags.forEach(tag => {
+          tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+        });
+      });
+      const allTags = [...new Set(prompts.flatMap(p => p.tags))].sort((a, b) => tagCounts[b] - tagCounts[a]);
+      const allModels = [...new Set(prompts.map(p => p.model))].sort();
+      const allResolutions = [...new Set(prompts.map(p => p.resolution))].sort();
       
       document.getElementById('tagFilters').innerHTML = allTags.map(tag => 
         `<div class="filter-option ${selectedTags.includes(tag) ? 'selected' : ''}" onclick="toggleTag('${tag}')">${tag}</div>`
@@ -367,13 +382,14 @@
     }
 
     function applyFilters() {
-      filteredPrompts = prompts.filter(p => {
+      let filtered = prompts.filter(p => {
         const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => p.tags.includes(tag));
         const modelMatch = !selectedModel || p.model === selectedModel;
         const resolutionMatch = !selectedResolution || p.resolution === selectedResolution;
         return tagMatch && modelMatch && resolutionMatch;
       });
       
+      filteredPrompts = shuffleArray(filtered);
       renderFilteredGrid();
       closeFilterPopup();
     }
