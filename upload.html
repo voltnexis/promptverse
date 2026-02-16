@@ -97,33 +97,30 @@
           </label>
           <input type="text" class="form-input" id="tags" placeholder="cyberpunk, portrait, neon, futuristic (separate with commas)">
         </div>
-        
         <div class="form-group">
-          <label class="form-label">
-            Original Image/Video *
-            <span class="info-icon">i
-              <div class="tooltip">Upload your original reference image or video before AI processing (.webp for images, .webm for videos)</div>
-            </span>
-          </label>
-          <div class="file-upload" onclick="document.getElementById('originalFile').click()">
-            <p>📁 Click to upload original (.webp or .webm only)</p>
-            <input type="file" id="originalFile" accept=".webp,.webm" required>
-            <div class="preview" id="originalPreview"></div>
-          </div>
+            <label class="form-label">
+              Original Image/Video URL *
+            </label>
+            <input
+              type="text"
+              class="form-input"
+              id="originalURL"
+              placeholder="https://example.com/original.webp"
+              required
+            >
         </div>
         
         <div class="form-group">
-          <label class="form-label">
-            AI Result Image/Video *
-            <span class="info-icon">i
-              <div class="tooltip">Upload the final AI-generated result after processing (.webp for images, .webm for videos)</div>
-            </span>
-          </label>
-          <div class="file-upload" onclick="document.getElementById('aiFile').click()">
-            <p>🤖 Click to upload AI result (.webp or .webm only)</p>
-            <input type="file" id="aiFile" accept=".webp,.webm" required>
-            <div class="preview" id="aiPreview"></div>
-          </div>
+            <label class="form-label">
+              AI Result Image/Video URL *
+            </label>
+            <input
+              type="text"
+              class="form-input"
+              id="aiURL"
+              placeholder="https://example.com/result.webp"
+              required
+            >
         </div>
         
         <div class="form-group">
@@ -161,59 +158,82 @@
     </div>
   </div>
 
-  <script>
-    function handleFileUpload(input, previewId) {
-      const file = input.files[0];
-      const preview = document.getElementById(previewId);
-      
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const isVideo = file.type.startsWith('video/');
-          preview.innerHTML = isVideo ? 
-            `<video src="${e.target.result}" controls></video>` : 
-            `<img src="${e.target.result}" alt="Preview">`;
-          preview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
+  <!-- ✅ Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // ✅ Supabase Config
+  const SUPABASE_URL = "https://yspnibvfsbawwesveoji.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzcG5pYnZmc2Jhd3dlc3Zlb2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MjE3NTksImV4cCI6MjA4NTk5Nzc1OX0.UldM-ltUAIo1cf8ppA0FYQp2DICutCVshB1r3Ek4M1o";
+
+  const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  console.log("✅ Supabase Upload Page Connected");
+
+  // ✅ Convert comma tags → array
+  function parseTags(input) {
+    if (!input.trim()) return [];
+    return input
+      .split(",")
+      .map(t => t.trim())
+      .filter(Boolean);
+  }
+
+  // ✅ Form Submit
+  document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    // Collect values
+    const title = document.getElementById("title").value;
+    const shortDesc = document.getElementById("shortDesc").value;
+    const fullDesc = document.getElementById("fullDesc").value;
+    const promptText = document.getElementById("promptText").value;
+
+    const tagsInput = document.getElementById("tags").value;
+    const tagsArray = parseTags(tagsInput);
+
+    const model = document.getElementById("model").value || "Unknown";
+    const resolution = document.getElementById("resolution").value || "1024x1024";
+    const owner = document.getElementById("owner").value || "Anonymous";
+
+    // ✅ URL Inputs (New)
+    const originalURL = document.getElementById("originalURL").value;
+    const aiURL = document.getElementById("aiURL").value;
+
+    // Insert into Supabase
+    const { data, error } = await supabase
+      .from("promptverse")
+      .insert([
+        {
+          name: title,
+          short: shortDesc,
+          description: fullDesc,
+          prompt: promptText,
+
+          tags: tagsArray,
+
+          org_img_url: originalURL,
+          ai_img_url: aiURL,
+
+          model: model,
+          resolution: resolution,
+          author: owner
+        }
+      ]);
+
+    if (error) {
+      alert("❌ Upload Failed: " + error.message);
+      console.error(error);
+      return;
     }
-    
-    document.getElementById('originalFile').addEventListener('change', function() {
-      handleFileUpload(this, 'originalPreview');
-    });
-    
-    document.getElementById('aiFile').addEventListener('change', function() {
-      handleFileUpload(this, 'aiPreview');
-    });
-    
-    document.getElementById('uploadForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const title = document.getElementById('title').value;
-      const shortDesc = document.getElementById('shortDesc').value;
-      const fullDesc = document.getElementById('fullDesc').value;
-      const promptText = document.getElementById('promptText').value;
-      const tags = document.getElementById('tags').value;
-      const model = document.getElementById('model').value || 'Unknown';
-      const resolution = document.getElementById('resolution').value || '1024x1024';
-      const owner = document.getElementById('owner').value || 'Anonymous';
-      
-      const originalFile = document.getElementById('originalFile').files[0];
-      const aiFile = document.getElementById('aiFile').files[0];
-      
-      const subject = `PromptVerse Submission: ${title}`;
-      const body = `New Prompt Submission:\n\nTitle: ${title}\nShort Description: ${shortDesc}\nFull Description: ${fullDesc}\nPrompt Text: ${promptText}\nTags: ${tags}\nAI Model: ${model}\nResolution: ${resolution}\nOwner/Creator: ${owner}\n\nOriginal File: ${originalFile ? originalFile.name : 'None'}\nAI Result File: ${aiFile ? aiFile.name : 'None'}\n\nPlease review and add to PromptVerse library.`;
-      
-      const mailtoLink = `mailto:voltnexis@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      window.location.href = mailtoLink;
-      
-      setTimeout(() => {
-        alert('Email client opened! Please attach your files and send the email.');
-        window.location.href = 'index.html';
-      }, 1000);
-    });
-  </script>
+
+    alert("✅ Prompt Uploaded Successfully!");
+    window.location.href = "index.html";
+  });
+</script>
+
 </body>
 </html>
