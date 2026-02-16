@@ -1,3 +1,6 @@
+
+window.prompts = [];
+
 // supabase.js
 // PromptVerse Supabase Loader (Replaces prompts.js)
 
