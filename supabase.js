@@ -41,8 +41,8 @@ script.onload = async () => {
     description: p.description,
 
     // ✅ Map new column names back to old ones
-    org_img_url: p.org_img_url,
-    ai_img_url: p.ai_img_url,
+    original: p.org_img_url,
+    ai: p.ai_img_url,
 
     prompt: p.prompt,
     tags: p.tags,
