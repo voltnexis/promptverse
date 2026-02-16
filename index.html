@@ -182,7 +182,7 @@
       return shuffled;
     }
 
-    let filteredPrompts = shuffleArray(prompts);
+    let filteredPrompts = [];
     let selectedTags = [];
     let selectedModel = '';
     let selectedResolution = '';
@@ -456,8 +456,6 @@
       if (e.target.id === 'filterPopup') closeFilterPopup();
     });
 
-    loadReactions();
-    renderGrid();
   </script>
 </body>
 </html>
