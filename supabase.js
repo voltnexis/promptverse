@@ -41,8 +41,8 @@ script.onload = async () => {
     description: p.description,
 
     // ✅ Map new column names back to old ones
-    original: p.org_img_url,
-    ai: p.ai_img_url,
+    org_img_url: p.org_img_url,
+    ai_img_url: p.ai_img_url,
 
     prompt: p.prompt,
     tags: p.tags,
@@ -56,6 +56,9 @@ script.onload = async () => {
   }));
 
   console.log("✅ Prompts Loaded:", window.prompts.length);
+
+  // ✅ NOW shuffle fully (you wanted this)
+  filteredPrompts = shuffleArray(prompts);
 
   // ✅ Start page rendering after prompts load
   loadReactions();
