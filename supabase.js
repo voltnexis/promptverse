@@ -57,12 +57,16 @@ script.onload = async () => {
 
   console.log("✅ Prompts Loaded:", window.prompts.length);
 
-  // ✅ NOW shuffle fully (you wanted this)
-  filteredPrompts = shuffleArray(prompts);
+  // ✅ NOW shuffle fully (only for index.html)
+  if (document.getElementById("promptGrid")) {
 
-  // ✅ Start page rendering after prompts load
-  loadReactions();
-  renderGrid();
+    // shuffle only homepage
+    filteredPrompts = shuffleArray(prompts);
+  
+    // reactions + render homepage grid
+    loadReactions();
+    renderGrid();
+  }
 };
 
 document.head.appendChild(script);
