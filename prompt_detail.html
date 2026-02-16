@@ -238,6 +238,9 @@
     function loadPromptDetails() {
       const promptId = getUrlParam('id');
       const prompt = prompts.find(p => p.id === promptId);
+
+      console.log("URL ID:", promptId);
+      console.log("First Prompt Object:", prompts[0]);
       
       if (!prompt) {
         document.body.innerHTML = '<h1>Prompt not found</h1>';
