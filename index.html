@@ -198,19 +198,19 @@
         card.onclick = () => window.location.href = `prompt_detail.html?id=${p.id}`;
         
         const isMobile = window.innerWidth <= 768;
-        const originalMedia = p.original.endsWith('.mp4') ? 
-          `<video src="${p.original}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
-          `<img src="${p.original}" alt="Original">`;
-        const aiMedia = p.ai.endsWith('.mp4') ? 
-          `<video src="${p.ai}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
-          `<img src="${p.ai}" alt="AI Result">`;
+        const originalMedia = p.org_img_url.endsWith('.mp4') ? 
+          `<video src="${p.org_img_url}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.org_img_url}" alt="Original">`;
+        const aiMedia = p.ai_img_url.endsWith('.mp4') ? 
+          `<video src="${p.ai_img_url}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.ai_img_url}" alt="AI Result">`;
         
         card.innerHTML = `
           <div class="model-badge">${p.model}</div>
           <div class="images">
             ${originalMedia}
             ${aiMedia}
-            ${(p.original.endsWith('.mp4') || p.ai.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
+            ${(p.org_img_url.endsWith('.mp4') || p.ai_img_url.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
           </div>
           <div class="card-content">
             <h3>${p.name}</h3>
@@ -248,19 +248,19 @@
         card.onclick = () => window.location.href = `prompt_detail.html?id=${p.id}`;
         
         const isMobile = window.innerWidth <= 768;
-        const originalMedia = p.original.endsWith('.mp4') ? 
-          `<video src="${p.original}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
-          `<img src="${p.original}" alt="Original">`;
-        const aiMedia = p.ai.endsWith('.mp4') ? 
-          `<video src="${p.ai}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
-          `<img src="${p.ai}" alt="AI Result">`;
+        const originalMedia = p.org_img_url.endsWith('.mp4') ? 
+          `<video src="${p.org_img_url}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.org_img_url}" alt="Original">`;
+        const aiMedia = p.ai_img_url.endsWith('.mp4') ? 
+          `<video src="${p.ai_img_url}" muted loop ${isMobile ? 'autoplay' : ''} preload="auto" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.ai_img_url}" alt="AI Result">`;
         
         card.innerHTML = `
           <div class="model-badge">${p.model}</div>
           <div class="images">
             ${originalMedia}
             ${aiMedia}
-            ${(p.original.endsWith('.mp4') || p.ai.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
+            ${(p.org_img_url.endsWith('.mp4') || p.ai_img_url.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
           </div>
           <div class="card-content">
             <h3>${highlightText(p.name, query)}</h3>
@@ -404,19 +404,19 @@
         card.onclick = () => window.location.href = `prompt_detail.html?id=${p.id}`;
         
         const isMobile = window.innerWidth <= 768;
-        const originalMedia = p.original.endsWith('.mp4') ? 
-          `<video src="${p.original}" muted loop ${isMobile ? 'autoplay' : ''} preload="${isMobile ? 'metadata' : 'none'}" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
-          `<img src="${p.original}" alt="Original">`;
-        const aiMedia = p.ai.endsWith('.mp4') ? 
-          `<video src="${p.ai}" muted loop ${isMobile ? 'autoplay' : ''} preload="${isMobile ? 'metadata' : 'none'}" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
-          `<img src="${p.ai}" alt="AI Result">`;
+        const originalMedia = p.org_img_url.endsWith('.mp4') ? 
+          `<video src="${p.org_img_url}" muted loop ${isMobile ? 'autoplay' : ''} preload="${isMobile ? 'metadata' : 'none'}" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.org_img_url}" alt="Original">`;
+        const aiMedia = p.ai_img_url.endsWith('.mp4') ? 
+          `<video src="${p.ai_img_url}" muted loop ${isMobile ? 'autoplay' : ''} preload="${isMobile ? 'metadata' : 'none'}" onmouseenter="if(window.innerWidth > 768) this.play()" onmouseleave="if(window.innerWidth > 768) this.pause()"></video>` : 
+          `<img src="${p.ai_img_url}" alt="AI Result">`;
         
         card.innerHTML = `
           <div class="model-badge">${p.model}</div>
           <div class="images">
             ${originalMedia}
             ${aiMedia}
-            ${(p.original.endsWith('.mp4') || p.ai.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
+            ${(p.org_img_url.endsWith('.mp4') || p.ai_img_url.endsWith('.mp4')) ? '<div class="media-type-badge">📹</div>' : ''}
           </div>
           <div class="card-content">
             <h3>${p.name}</h3>
