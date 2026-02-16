@@ -237,7 +237,7 @@
 
     function loadPromptDetails() {
       const promptId = getUrlParam("id");
-      const prompt = prompts.find(p => p.id === promptId);
+      const prompt = window.prompts.find(p => p.id === promptId);
 
       console.log("URL ID:", promptId);
       console.log("First Prompt Object:", prompts[0]);
@@ -301,7 +301,7 @@
 
     function copyPrompt() {
       const promptId = getUrlParam('id');
-      const prompt = prompts.find(p => p.id === promptId);
+      const prompt = window.prompts.find(p => p.id === promptId);
       navigator.clipboard.writeText(prompt.prompt);
       
       const copyBtn = document.querySelector('.copy-btn');
@@ -314,7 +314,7 @@
 
     function likePrompt() {
       const promptId = getUrlParam('id');
-      const prompt = prompts.find(p => p.id === promptId);
+      const prompt = window.prompts.find(p => p.id === promptId);
       prompt.likes++;
       
       saveReactions();
@@ -332,7 +332,7 @@
 
     function dislikePrompt() {
       const promptId = getUrlParam('id');
-      const prompt = prompts.find(p => p.id === promptId);
+      const prompt = window.prompts.find(p => p.id === promptId);
       prompt.dislikes++;
       
       saveReactions();
@@ -450,10 +450,6 @@
       if (!grid) return;
     }
 
-
-    loadReactions();
-    loadPromptDetails();
-    loadRelatedModels();
   </script>
 </body>
 </html>
