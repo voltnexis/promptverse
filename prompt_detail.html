@@ -236,7 +236,7 @@
     }
 
     function loadPromptDetails() {
-      const promptId = parseInt(getUrlParam('id'));
+      const promptId = getUrlParam('id');
       const prompt = prompts.find(p => p.id === promptId);
       
       if (!prompt) {
@@ -246,12 +246,12 @@
 
       document.getElementById('promptTitle').textContent = prompt.name;
       
-      const originalMedia = prompt.original.endsWith('.mp4') ? 
-        `<video src="${prompt.original}" controls loop autoplay muted></video>` : 
-        `<img src="${prompt.original}" alt="Original">`;
-      const aiMedia = prompt.ai.endsWith('.mp4') ? 
-        `<video src="${prompt.ai}" controls loop autoplay muted></video>` : 
-        `<img src="${prompt.ai}" alt="AI Generated">`;
+      const originalMedia = prompt.org_img_url.endsWith('.mp4') ? 
+        `<video src="${prompt.org_img_url}" controls loop autoplay muted></video>` : 
+        `<img src="${prompt.org_img_url}" alt="Original">`;
+      const aiMedia = prompt.ai_img_url.endsWith('.mp4') ? 
+        `<video src="${prompt.ai_img_url}" controls loop autoplay muted></video>` : 
+        `<img src="${prompt.ai_img_url}" alt="AI Generated">`;
       
       document.getElementById('originalMedia').innerHTML = originalMedia;
       document.getElementById('aiMedia').innerHTML = aiMedia;
@@ -297,7 +297,7 @@
     }
 
     function copyPrompt() {
-      const promptId = parseInt(getUrlParam('id'));
+      const promptId = getUrlParam('id');
       const prompt = prompts.find(p => p.id === promptId);
       navigator.clipboard.writeText(prompt.prompt);
       
@@ -310,7 +310,7 @@
     }
 
     function likePrompt() {
-      const promptId = parseInt(getUrlParam('id'));
+      const promptId = getUrlParam('id');
       const prompt = prompts.find(p => p.id === promptId);
       prompt.likes++;
       
@@ -328,7 +328,7 @@
     }
 
     function dislikePrompt() {
-      const promptId = parseInt(getUrlParam('id'));
+      const promptId = getUrlParam('id');
       const prompt = prompts.find(p => p.id === promptId);
       prompt.dislikes++;
       
@@ -441,6 +441,12 @@
     function closeImageOverlay() {
       document.getElementById('imageOverlay').style.display = 'none';
     }
+
+    function loadRelatedModels() {
+      const grid = document.getElementById("relatedGrid");
+      if (!grid) return;
+    }
+
 
     loadReactions();
     loadPromptDetails();
