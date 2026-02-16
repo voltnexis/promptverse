@@ -57,11 +57,16 @@ script.onload = async () => {
 
   console.log("✅ Prompts Loaded:", window.prompts.length);
 
+  // ✅ If detail page, load prompt after fetch
+  if (typeof loadPromptDetails === "function") {
+    loadPromptDetails();
+  }
+
   // ✅ NOW shuffle fully (only for index.html)
   if (document.getElementById("promptGrid")) {
 
     // shuffle only homepage
-    filteredPrompts = shuffleArray(prompts);
+    filteredPrompts = shuffleArray(window.prompts);
   
     // reactions + render homepage grid
     loadReactions();
