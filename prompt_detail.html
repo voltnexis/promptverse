@@ -383,7 +383,7 @@
     }
     
     function loadRelatedModels() {
-      const currentPromptId = parseInt(getUrlParam('id'));
+      const currentPromptId = (getUrlParam('id'));
       const currentPrompt = prompts.find(p => p.id === currentPromptId);
       
       let relatedPrompts = prompts.filter(p => 
